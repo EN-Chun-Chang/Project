@@ -10,8 +10,8 @@ unsigned long currentTime;
 
 //------依照不同伺服馬達型號做更改(like 0.17s per 60 degree)---------//
 float  motor_constant_speed = 0.17/60; 
-//------依照不同步進馬達型號做更改(此步進馬達步級角為1.8度)----------//
-float  stepper_degree = 360/200;
+//------步進馬達規格----------//
+//以1.8為步級角//
 //--------stepper 1~4 class----------------//
 class stepper1{
   public:
@@ -26,7 +26,7 @@ class stepper1{
         currentTime = micros();
         setdir1 = (stepper_omega1>0)? HIGH:LOW;//正反轉控制
         digitalWrite(driverDIR1, setdir1);
-        delayTime1 = abs((stepper_degree*PI*1000000)/(180*stepper_omega1));
+        delayTime1 = abs((PI*1000000)/(180*stepper_omega1));
         if( (currentTime - deltaTime1) > delayTime1 ){
               //pulseCount2++;
               Serial.println(delayTime1);
@@ -63,7 +63,7 @@ class stepper2{
         currentTime = micros();
         setdir2 = (stepper_omega2>0)? HIGH:LOW;//正反轉控制
         digitalWrite(driverDIR2, setdir2);
-        delayTime2 = abs((2*PI*1000000)/(400*stepper_omega2));
+        delayTime2 = abs((PI*1000000)/(180*stepper_omega2));
         if( (currentTime - deltaTime2) > delayTime2 ){
               //pulseCount2++;
           
@@ -99,7 +99,7 @@ class stepper3{
         currentTime = micros();
         setdir3 = (stepper_omega3>0)? HIGH:LOW;//正反轉控制
         digitalWrite(driverDIR3, setdir3);
-        delayTime3 = abs((2*PI*1000000)/(400*stepper_omega3));
+        delayTime3 = abs((PI*1000000)/(180*stepper_omega3));
         if( (currentTime - deltaTime3) > delayTime3 ){
               //pulseCount2++;
           
@@ -135,7 +135,7 @@ class stepper4{
         currentTime = micros();
         setdir4 = (stepper_omega4>0)? HIGH:LOW;//正反轉控制
         digitalWrite(driverDIR4, setdir4);
-        delayTime4 = abs((2*PI*1000000)/(400*stepper_omega4));
+        delayTime4 = abs((PI*1000000)/(180*stepper_omega4));
         if( (currentTime - deltaTime4) > delayTime4 ){
               //pulseCount2++;
           
